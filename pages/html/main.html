@@ -10,7 +10,8 @@
 </head>
 
 <body>
-    <div class="row">
+    <div id="app">
+        <div class="row">
         <div class="col-left col-sm-3">
             <div class="panel-control">
                 <h5>铜芯的账本</h5>
@@ -22,15 +23,9 @@
                         <span class="circle-btn fa fa-plus"></span>
                     </h5>
                     <ul class="ul-type">
-                        <li>吃饭</li>
-                        <li class="active">吃饭</li>
-                        <li>吃饭</li>
-                        <li>吃饭</li>
-                        <li>吃饭</li>
-                        <li>吃饭</li>
-                        <li>吃饭</li>
-                        <li>吃饭</li>
-                        <li>吃饭</li>
+                        <li class="bolder" v-for="type in types" :style="'border-color:'+type.color+';color:'+type.color">
+                        {{type.name}}</li>
+<!--                        <li class="active">吃饭</li>-->
                     </ul>
                     <div class="hidden">
                         <input type="radio" name="type" value="food">
@@ -53,141 +48,40 @@
                 </form>
             </div>
         </div>
+        
+<!-- 右侧清单 -->
         <div class="col-right col-sm-9">
-            
-            <div class="list-day">
-                <div class="title-month">
-                    <span class="month inline-block din-bold">2017/10</span>
-                    <span class="in-out inline-block">
-                        <div class="color-out">-¥1208.59</div>
-                        <div class="color-in">+¥6000.00</div>
-                    </span>
-                </div>
-                <ul>
-                    <li>
-                        <span class="date inline-block din-bold">10-14</span>
-                        <span class="summary inline-block">
-                            <div class="total">-¥16.00</div>
-                            <div class="remainder">¥1208.00</div>
+            <ul class="list-day">
+                <li v-for="record in records">
+                    <div class="title-month">
+                        <span class="month inline-block din-bold">{{record.month}}</span>
+                        <span class="in-out inline-block">
+                            <div class="color-out">-¥{{record.out}}</div>
+                            <div class="color-in">+¥{{record.in}}</div>
                         </span>
-                        <ul class="day-detail inline-block">
-                            <li>
-                                <span class="amount">¥<span class="din-bold">128.00</span></span><span class="type">吃饭</span>
-                            </li>
-                            <li>
-                                <span class="amount">¥<span class="din-bold">128.00</span></span><span class="type">吃饭</span>
-                            </li>
-                            <li>
-                                <span class="amount">¥<span class="din-bold">128.00</span></span><span class="type">吃饭</span>
-                            </li>
-                            <li>
-                                <span class="amount">¥<span class="din-bold">128.00</span></span><span class="type">吃饭</span>
-                            </li>
-                            <li>
-                                <span class="amount">¥<span class="din-bold">128.00</span></span><span class="type">吃饭</span>
-                            </li>
-                            <li>
-                                <span class="amount">¥<span class="din-bold">128.00</span></span><span class="type">吃饭</span>
-                            </li>
-                            <li>
-                                <span class="amount">¥<span class="din-bold">128.00</span></span><span class="type">吃饭</span>
-                            </li>
-                            <li>
-                                <span class="amount">¥<span class="din-bold">128.00</span></span><span class="type">吃饭</span>
-                            </li>
-                            <li>
-                                <span class="amount">¥<span class="din-bold">128.00</span></span><span class="type">吃饭</span>
-                            </li>
-                            <li>
-                                <span class="amount">¥<span class="din-bold">128.00</span></span><span class="type">吃饭</span>
-                            </li>
-                            <li>
-                                <span class="amount">¥<span class="din-bold">128.00</span></span><span class="type">吃饭</span>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <span class="date inline-block din-bold">10-14</span>
-                        <span class="summary inline-block">
-                            <div class="total">-¥16.00</div>
-                            <div class="remainder">¥1208.00</div>
-                        </span>
-                        <ul class="day-detail inline-block">
-                            <li>
-                                <span class="amount">¥<span class="din-bold">128.00</span></span><span class="type">吃饭</span>
-                            </li>
-                            <li>
-                                <span class="amount">¥<span class="din-bold">128.00</span></span><span class="type">吃饭</span>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <span class="date inline-block din-bold">10-14</span>
-                        <span class="summary inline-block">
-                            <div class="total">-¥16.00</div>
-                            <div class="remainder">¥1208.00</div>
-                        </span>
-                        <ul class="day-detail inline-block">
-                            <li>
-                                <span class="amount">¥<span class="din-bold">128.00</span></span><span class="type">吃饭</span>
-                            </li>
-                            <li>
-                                <span class="amount">¥<span class="din-bold">128.00</span></span><span class="type">吃饭</span>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <span class="date inline-block din-bold">10-14</span>
-                        <span class="summary inline-block">
-                            <div class="total">-¥16.00</div>
-                            <div class="remainder">¥1208.00</div>
-                        </span>
-                        <ul class="day-detail inline-block">
-                            <li>
-                                <span class="amount">¥<span class="din-bold">128.00</span></span><span class="type">吃饭</span>
-                            </li>
-                            <li>
-                                <span class="amount">¥<span class="din-bold">128.00</span></span><span class="type">吃饭</span>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <span class="date inline-block din-bold">10-14</span>
-                        <span class="summary inline-block">
-                            <div class="total">-¥16.00</div>
-                            <div class="remainder">¥1208.00</div>
-                        </span>
-                        <ul class="day-detail inline-block">
-                            <li>
-                                <span class="amount">¥<span class="din-bold">128.00</span></span><span class="type">吃饭</span>
-                            </li>
-                            <li>
-                                <span class="amount">¥<span class="din-bold">128.00</span></span><span class="type">吃饭</span>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <span class="date inline-block din-bold">10-14</span>
-                        <span class="summary inline-block">
-                            <div class="total">-¥16.00</div>
-                            <div class="remainder">¥1208.00</div>
-                        </span>
-                        <ul class="day-detail inline-block">
-                            <li>
-                                <span class="amount">¥<span class="din-bold">128.00</span></span><span class="type">吃饭</span>
-                            </li>
-                            <li>
-                                <span class="amount">¥<span class="din-bold">128.00</span></span><span class="type">吃饭</span>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
+                    </div>
+                    <ul class="ul-days">
+                        <li v-for="dayRecord in record.dayRecords">
+                            <span class="date inline-block din-bold">{{dayRecord.date}}</span>
+                            <span class="summary inline-block">
+                                <div class="total">-¥{{dayRecord.out}}</div>
+                                <div class="remainder">¥{{dayRecord.remainder}}</div>
+                            </span>
+                            <ul class="day-detail inline-block">
+                                <li v-for="detail in dayRecord.detailRecords" :style="'border-color:'+detail.color">
+                                    <span class="amount" :style="'background:'+detail.color">¥<span class="din-bold">{{detail.amount}}</span></span><span class="type" :style="'color:'+detail.color">{{detail.type}}</span>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
             
         </div>
+    </div>
     </div>
 </body>
 <script src="../assets/bootstrap/js/bootstrap.min.js"></script>
 <script src="../assets/vue.js"></script>
-
+<script src="../js/main.js"></script>
 </html>

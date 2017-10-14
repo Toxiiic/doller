@@ -59,10 +59,10 @@ body {
     font-weight: bolder;
 }
 .color-out {
-    color: red;
+    color: #cc0000;
 }
 .color-in {
-    color: limegreen;
+    color: #5bad00;
 }
 .din-bold {
     font-family: din-bold;
@@ -76,18 +76,19 @@ form.form-add-record {
     
     ul.ul-type {
         li {
-            width: 45px;
+            width: 64px;
             height: 45px;
-            padding-top: 4px;
+            padding-top: 12px;
             cursor: pointer;
-            border-radius: 3px;
+            border-radius: 5px;
             border: 1px solid #D0011B;
             color: #D0011B;
             text-align: center;
             display: inline-block;
-            vertical-align: sub;
             font-size: 8pt;
             transition: all .5s;
+            margin: 5px;
+            vertical-align: middle;
         }
         li.active {
             color: white;
@@ -139,7 +140,7 @@ form.form-add-record {
                 }
             }
         }
-        >ul {
+        ul.ul-days {
             padding-left: 20px;
             >li {
                 padding: 7px 0;
@@ -161,16 +162,16 @@ form.form-add-record {
                         font-size: 8pt;
                     }
                 }
-                >ul.day-detail {
+                ul.day-detail {
                     margin: 0 10px;
                     max-width: 750px;
                     >li {
-                        margin: 0 2px 8px;
-                        border: 1px solid red;
+                        margin: 0 4px 10px;
+                        border: 1px solid black;
                         border-radius: 5px;
                         display: inline-block;
                         .amount {
-                            background: red;
+//                            background: red;
                             display: inline-block;
                             color: white;
                             padding: 1px 6px;
@@ -178,7 +179,7 @@ form.form-add-record {
                         }
                         .type {
                             font-size: 8pt;
-                            color: red;
+//                            color: red;
                             display: inline-block;
                             background: white;
                             vertical-align: text-bottom;
