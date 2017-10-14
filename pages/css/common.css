@@ -1,0 +1,190 @@
+@charset "UTF-8";
+@font-face {
+  font-family: din-light;
+  src: url("../fonts/DINPro-Light.otf"); }
+
+@font-face {
+  font-family: din-bold;
+  src: url("../fonts/DINPro-Bold.otf"); }
+
+/* line 14, /projects/2017-10-13 账本/pages/css/common.scss */
+body {
+  color: #9396BF;
+  font-family: din-light; }
+  /* line 17, /projects/2017-10-13 账本/pages/css/common.scss */
+  body ul {
+    list-style: none;
+    padding: 0; }
+  /* line 21, /projects/2017-10-13 账本/pages/css/common.scss */
+  body h5 {
+    font-size: 11pt;
+    margin: 15px 0 8px; }
+
+/**
+重用类
+*/
+/* line 30, /projects/2017-10-13 账本/pages/css/common.scss */
+.btn {
+  cursor: pointer; }
+
+/* line 33, /projects/2017-10-13 账本/pages/css/common.scss */
+.hidden {
+  display: none; }
+
+/* line 36, /projects/2017-10-13 账本/pages/css/common.scss */
+.inline-block {
+  display: inline-block; }
+
+/* line 39, /projects/2017-10-13 账本/pages/css/common.scss */
+.circle-btn {
+  background: rgba(147, 149, 191, 0.1);
+  text-align: center;
+  width: 20px;
+  height: 20px;
+  padding-top: 3px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-left: 6px;
+  color: rgba(147, 150, 191, 0.7); }
+
+/* line 50, /projects/2017-10-13 账本/pages/css/common.scss */
+.bg-brand {
+  background: #4e00ff;
+  border: #4e00ff;
+  color: white; }
+
+/* line 55, /projects/2017-10-13 账本/pages/css/common.scss */
+.bold {
+  font-weight: bold; }
+
+/* line 58, /projects/2017-10-13 账本/pages/css/common.scss */
+.bolder {
+  font-weight: bolder; }
+
+/* line 61, /projects/2017-10-13 账本/pages/css/common.scss */
+.color-out {
+  color: red; }
+
+/* line 64, /projects/2017-10-13 账本/pages/css/common.scss */
+.color-in {
+  color: limegreen; }
+
+/* line 67, /projects/2017-10-13 账本/pages/css/common.scss */
+.din-bold {
+  font-family: din-bold; }
+
+/**
+重用组件
+*/
+/* line 74, /projects/2017-10-13 账本/pages/css/common.scss */
+form.form-add-record {
+  margin-top: 50px; }
+  /* line 78, /projects/2017-10-13 账本/pages/css/common.scss */
+  form.form-add-record ul.ul-type li {
+    width: 45px;
+    height: 45px;
+    padding-top: 4px;
+    cursor: pointer;
+    border-radius: 3px;
+    border: 1px solid #D0011B;
+    color: #D0011B;
+    text-align: center;
+    display: inline-block;
+    vertical-align: sub;
+    font-size: 8pt;
+    transition: all .5s; }
+  /* line 92, /projects/2017-10-13 账本/pages/css/common.scss */
+  form.form-add-record ul.ul-type li.active {
+    color: white;
+    background: #D0011B;
+    box-shadow: 0 0 0 3px rgba(208, 1, 27, 0.15); }
+  /* line 97, /projects/2017-10-13 账本/pages/css/common.scss */
+  form.form-add-record ul.ul-type li:hover {
+    box-shadow: 0 0 0 3px rgba(208, 1, 27, 0.15); }
+  /* line 102, /projects/2017-10-13 账本/pages/css/common.scss */
+  form.form-add-record .btn-confirm {
+    width: 100px;
+    float: right;
+    margin-top: 5px; }
+
+/* 页面 */
+/* line 112, /projects/2017-10-13 账本/pages/css/common.scss */
+.col-left {
+  padding-right: 20px;
+  background: rgba(147, 150, 191, 0.03); }
+  /* line 115, /projects/2017-10-13 账本/pages/css/common.scss */
+  .col-left .panel-control {
+    float: right;
+    max-width: 300px; }
+    /* line 119, /projects/2017-10-13 账本/pages/css/common.scss */
+    .col-left .panel-control .remainder {
+      font-size: 20pt;
+      font-weight: bolder; }
+
+/* line 126, /projects/2017-10-13 账本/pages/css/common.scss */
+.col-right {
+  padding-left: 30px; }
+  /* line 129, /projects/2017-10-13 账本/pages/css/common.scss */
+  .col-right .list-day .title-month {
+    margin: 20px 0 10px; }
+    /* line 131, /projects/2017-10-13 账本/pages/css/common.scss */
+    .col-right .list-day .title-month .month {
+      font-size: 20pt; }
+    /* line 134, /projects/2017-10-13 账本/pages/css/common.scss */
+    .col-right .list-day .title-month .in-out {
+      margin-left: 12px;
+      font-size: 6pt; }
+      /* line 137, /projects/2017-10-13 账本/pages/css/common.scss */
+      .col-right .list-day .title-month .in-out div {
+        line-height: 1; }
+  /* line 142, /projects/2017-10-13 账本/pages/css/common.scss */
+  .col-right .list-day > ul {
+    padding-left: 20px; }
+    /* line 144, /projects/2017-10-13 账本/pages/css/common.scss */
+    .col-right .list-day > ul > li {
+      padding: 7px 0; }
+      /* line 146, /projects/2017-10-13 账本/pages/css/common.scss */
+      .col-right .list-day > ul > li .date {
+        background: rgba(147, 149, 191, 0.1);
+        padding: 1px 5px;
+        border-radius: 5px;
+        margin: 0 10px;
+        vertical-align: top; }
+      /* line 153, /projects/2017-10-13 账本/pages/css/common.scss */
+      .col-right .list-day > ul > li .summary {
+        margin: 0 10px;
+        vertical-align: top; }
+        /* line 156, /projects/2017-10-13 账本/pages/css/common.scss */
+        .col-right .list-day > ul > li .summary .total {
+          font-size: 16pt;
+          line-height: .7; }
+        /* line 160, /projects/2017-10-13 账本/pages/css/common.scss */
+        .col-right .list-day > ul > li .summary .remainder {
+          font-size: 8pt; }
+      /* line 164, /projects/2017-10-13 账本/pages/css/common.scss */
+      .col-right .list-day > ul > li > ul.day-detail {
+        margin: 0 10px;
+        max-width: 750px; }
+        /* line 167, /projects/2017-10-13 账本/pages/css/common.scss */
+        .col-right .list-day > ul > li > ul.day-detail > li {
+          margin: 0 2px 8px;
+          border: 1px solid red;
+          border-radius: 5px;
+          display: inline-block; }
+          /* line 172, /projects/2017-10-13 账本/pages/css/common.scss */
+          .col-right .list-day > ul > li > ul.day-detail > li .amount {
+            background: red;
+            display: inline-block;
+            color: white;
+            padding: 1px 6px;
+            font-size: 13pt; }
+          /* line 179, /projects/2017-10-13 账本/pages/css/common.scss */
+          .col-right .list-day > ul > li > ul.day-detail > li .type {
+            font-size: 8pt;
+            color: red;
+            display: inline-block;
+            background: white;
+            vertical-align: text-bottom;
+            padding: 0 10px 0 8px; }
+
+/*# sourceMappingURL=common.css.map */

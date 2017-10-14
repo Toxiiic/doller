@@ -1,0 +1,192 @@
+$gray-blue: #9396BF;
+$brand-color: #4e00ff;
+
+@font-face {
+    font-family: din-light;
+    src: url('../fonts/DINPro-Light.otf');
+}
+@font-face {
+    font-family: din-bold;
+    src: url('../fonts/DINPro-Bold.otf');
+}
+
+
+body {
+    color: $gray-blue;
+    font-family: din-light;
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+    h5 {
+        font-size: 11pt;
+        margin: 15px 0 8px;
+    }
+}
+
+/**
+重用类
+*/
+.btn {
+    cursor: pointer;
+}
+.hidden {
+    display: none;
+}
+.inline-block {
+    display: inline-block;
+}
+.circle-btn {
+    background: rgba(147, 149, 191, 0.1);
+    text-align: center;
+    width: 20px;
+    height: 20px;
+    padding-top: 3px;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-left: 6px;
+    color: rgba(147, 150, 191, 0.7);
+}
+.bg-brand {
+    background: $brand-color;
+    border: $brand-color;
+    color: white;
+}
+.bold {
+    font-weight: bold;
+}
+.bolder {
+    font-weight: bolder;
+}
+.color-out {
+    color: red;
+}
+.color-in {
+    color: limegreen;
+}
+.din-bold {
+    font-family: din-bold;
+}
+
+/**
+重用组件
+*/
+form.form-add-record {
+    margin-top: 50px;
+    
+    ul.ul-type {
+        li {
+            width: 45px;
+            height: 45px;
+            padding-top: 4px;
+            cursor: pointer;
+            border-radius: 3px;
+            border: 1px solid #D0011B;
+            color: #D0011B;
+            text-align: center;
+            display: inline-block;
+            vertical-align: sub;
+            font-size: 8pt;
+            transition: all .5s;
+        }
+        li.active {
+            color: white;
+            background: #D0011B;
+            box-shadow: 0 0 0 3px rgba(208, 1, 27, 0.15);
+        }
+        li:hover {
+            box-shadow: 0 0 0 3px rgba(208, 1, 27, 0.15);
+        }
+    }
+    
+    .btn-confirm {
+        width: 100px;
+        float: right;
+        margin-top: 5px;
+    }
+}
+
+
+
+/* 页面 */
+.col-left {
+    padding-right: 20px;
+    background: rgba(147, 150, 191, 0.03);
+    .panel-control {
+        float: right;
+        max-width: 300px;
+
+        .remainder {
+            font-size: 20pt;
+            font-weight: bolder;
+        }
+    }
+}
+
+.col-right {
+    padding-left: 30px;
+    .list-day {
+        .title-month {
+            margin: 20px 0 10px;
+            .month {
+                font-size: 20pt;
+            }
+            .in-out {
+                margin-left: 12px;
+                font-size: 6pt;
+                div {
+                    line-height: 1;
+                }
+            }
+        }
+        >ul {
+            padding-left: 20px;
+            >li {
+                padding: 7px 0;
+                .date {
+                    background: rgba(147, 149, 191, 0.1);
+                    padding: 1px 5px;
+                    border-radius: 5px;
+                    margin: 0 10px;
+                    vertical-align: top;
+                }
+                .summary {
+                    margin: 0 10px;
+                    vertical-align: top;
+                    .total {
+                        font-size: 16pt;
+                        line-height: .7;
+                    }
+                    .remainder {
+                        font-size: 8pt;
+                    }
+                }
+                >ul.day-detail {
+                    margin: 0 10px;
+                    max-width: 750px;
+                    >li {
+                        margin: 0 2px 8px;
+                        border: 1px solid red;
+                        border-radius: 5px;
+                        display: inline-block;
+                        .amount {
+                            background: red;
+                            display: inline-block;
+                            color: white;
+                            padding: 1px 6px;
+                            font-size: 13pt;
+                        }
+                        .type {
+                            font-size: 8pt;
+                            color: red;
+                            display: inline-block;
+                            background: white;
+                            vertical-align: text-bottom;
+                            padding: 0 10px 0 8px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
