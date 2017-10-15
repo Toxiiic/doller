@@ -93,92 +93,93 @@ form.form-add-record {
     font-size: 8pt;
     transition: all .5s;
     margin: 5px;
-    vertical-align: middle; }
-  /* line 93, /projects/2017-10-13 账本/Doller/pages/css/common.scss */
+    vertical-align: middle;
+    background: white; }
+  /* line 94, /projects/2017-10-13 账本/Doller/pages/css/common.scss */
   form.form-add-record ul.ul-type li.active {
     color: white;
     background: #D0011B;
     box-shadow: 0 0 0 3px rgba(208, 1, 27, 0.15); }
-  /* line 98, /projects/2017-10-13 账本/Doller/pages/css/common.scss */
+  /* line 99, /projects/2017-10-13 账本/Doller/pages/css/common.scss */
   form.form-add-record ul.ul-type li:hover {
     box-shadow: 0 0 0 3px rgba(208, 1, 27, 0.15); }
-  /* line 103, /projects/2017-10-13 账本/Doller/pages/css/common.scss */
+  /* line 104, /projects/2017-10-13 账本/Doller/pages/css/common.scss */
   form.form-add-record .btn-confirm {
     width: 100px;
     float: right;
     margin-top: 5px; }
 
 /* 页面 */
-/* line 113, /projects/2017-10-13 账本/Doller/pages/css/common.scss */
+/* line 114, /projects/2017-10-13 账本/Doller/pages/css/common.scss */
 .col-left {
   padding-right: 20px;
   background: rgba(147, 150, 191, 0.03); }
-  /* line 116, /projects/2017-10-13 账本/Doller/pages/css/common.scss */
+  /* line 117, /projects/2017-10-13 账本/Doller/pages/css/common.scss */
   .col-left .panel-control {
     float: right;
     max-width: 300px; }
-    /* line 120, /projects/2017-10-13 账本/Doller/pages/css/common.scss */
+    /* line 121, /projects/2017-10-13 账本/Doller/pages/css/common.scss */
     .col-left .panel-control .remainder {
       font-size: 20pt;
       font-weight: bolder; }
 
-/* line 127, /projects/2017-10-13 账本/Doller/pages/css/common.scss */
+/* line 128, /projects/2017-10-13 账本/Doller/pages/css/common.scss */
 .col-right {
   padding-left: 30px; }
-  /* line 130, /projects/2017-10-13 账本/Doller/pages/css/common.scss */
+  /* line 131, /projects/2017-10-13 账本/Doller/pages/css/common.scss */
   .col-right .list-day .title-month {
     margin: 20px 0 10px; }
-    /* line 132, /projects/2017-10-13 账本/Doller/pages/css/common.scss */
+    /* line 133, /projects/2017-10-13 账本/Doller/pages/css/common.scss */
     .col-right .list-day .title-month .month {
       font-size: 20pt; }
-    /* line 135, /projects/2017-10-13 账本/Doller/pages/css/common.scss */
+    /* line 136, /projects/2017-10-13 账本/Doller/pages/css/common.scss */
     .col-right .list-day .title-month .in-out {
       margin-left: 12px;
       font-size: 6pt; }
-      /* line 138, /projects/2017-10-13 账本/Doller/pages/css/common.scss */
+      /* line 139, /projects/2017-10-13 账本/Doller/pages/css/common.scss */
       .col-right .list-day .title-month .in-out div {
         line-height: 1; }
-  /* line 143, /projects/2017-10-13 账本/Doller/pages/css/common.scss */
+  /* line 144, /projects/2017-10-13 账本/Doller/pages/css/common.scss */
   .col-right .list-day ul.ul-days {
     padding-left: 20px; }
-    /* line 145, /projects/2017-10-13 账本/Doller/pages/css/common.scss */
+    /* line 146, /projects/2017-10-13 账本/Doller/pages/css/common.scss */
     .col-right .list-day ul.ul-days > li {
       padding: 7px 0; }
-      /* line 147, /projects/2017-10-13 账本/Doller/pages/css/common.scss */
+      /* line 148, /projects/2017-10-13 账本/Doller/pages/css/common.scss */
       .col-right .list-day ul.ul-days > li .date {
         background: rgba(147, 149, 191, 0.1);
         padding: 1px 5px;
         border-radius: 5px;
         margin: 0 10px;
         vertical-align: top; }
-      /* line 154, /projects/2017-10-13 账本/Doller/pages/css/common.scss */
+      /* line 155, /projects/2017-10-13 账本/Doller/pages/css/common.scss */
       .col-right .list-day ul.ul-days > li .summary {
         margin: 0 10px;
         vertical-align: top; }
-        /* line 157, /projects/2017-10-13 账本/Doller/pages/css/common.scss */
+        /* line 158, /projects/2017-10-13 账本/Doller/pages/css/common.scss */
         .col-right .list-day ul.ul-days > li .summary .total {
           font-size: 16pt;
           line-height: .7; }
-        /* line 161, /projects/2017-10-13 账本/Doller/pages/css/common.scss */
+        /* line 162, /projects/2017-10-13 账本/Doller/pages/css/common.scss */
         .col-right .list-day ul.ul-days > li .summary .remainder {
           font-size: 8pt; }
-      /* line 165, /projects/2017-10-13 账本/Doller/pages/css/common.scss */
+      /* line 166, /projects/2017-10-13 账本/Doller/pages/css/common.scss */
       .col-right .list-day ul.ul-days > li ul.day-detail {
         margin: 0 10px;
         max-width: 750px; }
-        /* line 168, /projects/2017-10-13 账本/Doller/pages/css/common.scss */
+        /* line 169, /projects/2017-10-13 账本/Doller/pages/css/common.scss */
         .col-right .list-day ul.ul-days > li ul.day-detail > li {
           margin: 0 4px 10px;
           border: 1px solid black;
           border-radius: 5px;
           display: inline-block; }
-          /* line 173, /projects/2017-10-13 账本/Doller/pages/css/common.scss */
+          /* line 174, /projects/2017-10-13 账本/Doller/pages/css/common.scss */
           .col-right .list-day ul.ul-days > li ul.day-detail > li .amount {
             display: inline-block;
             color: white;
             padding: 1px 6px;
             font-size: 13pt; }
-          /* line 180, /projects/2017-10-13 账本/Doller/pages/css/common.scss */
+          /* line 181, /projects/2017-10-13 账本/Doller/pages/css/common.scss */
           .col-right .list-day ul.ul-days > li ul.day-detail > li .type {
             font-size: 8pt;
             display: inline-block;

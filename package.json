@@ -1,0 +1,24 @@
+{
+    "name": "doller",
+    "version": "1.0.0",
+    "description": "A web account book",
+    "main": "app.js",
+    "scripts": {
+        "start": "node app.js"
+    },
+    "keywords": [
+        "koa",
+        "async"
+    ],
+    "author": "Toxiic Tong",
+    "license": "Apache-2.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/toxiiic/doller.git"
+    },
+    "dependencies": {
+        "koa": "2.0.0",
+        "koa-bodyparser": "^3.2.0",
+        "koa-router": "^7.0.0"
+    }
+}
