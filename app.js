@@ -7,15 +7,19 @@ const controller = require('./controller');
 const staticFiles = require('./static-files');
 const Sequelize = require('sequelize');
 const config = require('./config');
+const rest = require('./rest');
 
 
 const app = new Koa();
 
+app.use(rest.restify());
 /** 中间件的注册顺序很重要！！*/
 app.use(async (ctx, next) => {
     console.log(`处理 方法：${ctx.request.method} url：${ctx.request.url}`);
     await next();
 });
+
+
 app.use(bodyparser());
 app.use(controller());
 app.use(staticFiles('/static/', __dirname + '/pages'));
