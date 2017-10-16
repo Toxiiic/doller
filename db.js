@@ -1,9 +1,10 @@
 const Sequelize = require('sequelize');
+const config = require('./config');
 
 console.log('init sequelize...');
 
-var sequelize = new Sequelize('dbname', 'username', 'password', {
-    host: 'localhost',
+var sequelize = new Sequelize(config.database, config.username, config.password, {
+    host: config.host,
     dialect: 'mysql',
     pool: {
         max: 5,
@@ -12,7 +13,9 @@ var sequelize = new Sequelize('dbname', 'username', 'password', {
     }
 });
 
-const ID_TYPE = Sequelize.STRING(50);
+//id应该用什么类型好？
+// const ID_TYPE = Sequelize.STRING(50);
+const ID_TYPE = Sequelize.INTEGER;
 
 function defineModel(name, attributes) {
     var attrs = {};
@@ -51,9 +54,9 @@ function defineModel(name, attributes) {
             beforeValidate: function (obj) {
                 let now = Date.now();
                 if (obj.isNewRecord) {
-                    if (!obj.id) {
-                        obj.id = generateId();
-                    }
+                    // if (!obj.id) {
+                    //     obj.id = generateId();
+                    // }
                     obj.createdAt = now;
                     obj.updatedAt = now;
                     obj.version = 0;
@@ -65,3 +68,7 @@ function defineModel(name, attributes) {
         }
     });
 }
+
+//所以这个db，就是给Sequelize封装了一下，之后直接使用db而不用再使用Sequelize了
+Sequelize.defineModel = defineModel;
+module.exports = Sequelize;
