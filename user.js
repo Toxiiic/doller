@@ -1,3 +1,5 @@
+var model = require('./model');
+
 var id = 0;
 
 function nextId() {
@@ -19,8 +21,16 @@ var products = [
 ];
 
 module.exports = {
-    getProducts: () => {
-        return products;
+     getProducts: async () => {
+        let User = model.user;
+        // var user = await User.create({
+        //     name: '呃呃呃没有灯光',
+        //     pwd: '123456'
+        // });
+
+        let users = await User.findAll();
+        // console.log(`1 ${JSON.stringify(users)}`);
+        return JSON.stringify(users);
     },
 
     getProduct: (id) => {

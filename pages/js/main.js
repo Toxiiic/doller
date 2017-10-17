@@ -236,5 +236,12 @@ const vm = new Vue({
                 }]
             }, 
         ]
+    },
+    mounted: function() {
+        axios.get('/api/products').then(function(response) {
+            console.log(response.data.products);
+        }).catch(function(error) {
+            console.log(`${error}`);
+        });
     }
 });
