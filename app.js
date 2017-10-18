@@ -22,7 +22,8 @@ app.use(async (ctx, next) => {
 
 app.use(bodyparser());
 app.use(controller());
-app.use(staticFiles('/static/', __dirname + '/pages'));
+//url以pages开头，则去找pages目录下的静态文件
+app.use(staticFiles('/pages/', __dirname + '/pages'));
 
 
 // const model = require('./model');

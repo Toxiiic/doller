@@ -28,7 +28,11 @@ function addControllers(router) {
         addMapping(router, mapping);
     }
 }
-
+/**
+ * 导入controller，限定：
+ * 1. controllers目录下
+ * 2. .js结尾
+*/
 module.exports = function (dir) {
     let
         controllers_dir = dir || 'controllers', // 如果不传参数，扫描目录默认为'controllers'

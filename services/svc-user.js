@@ -1,4 +1,5 @@
-var model = require('./model');
+
+var model = require('../model');
 
 var id = 0;
 

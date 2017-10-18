@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>登陆</title>
+</head>
+<body>
+    <div id="app">
+        <form>
+            <input type="text" v-model="username">
+            <input type="text" v-model="password">
+            <button type="button" @click="login()">登陆</button>
+        </form>
+    </div>
+</body>
+<script src="/pages/assets/vue.js"></script>
+<script src="/pages/assets/axios.min.js"></script>
+<script src="/pages/js/login.js"></script>
+</html>

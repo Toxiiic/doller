@@ -1,17 +1,17 @@
-let fn_index = async (ctx, next) => {
-    ctx.response.body = `<h1>index页～～～</h1>
-    <form action="/signin" method="post">
-        <p>Name: <input name="name" value="koa"></p>
-        <p>Password: <input name="password" type="password"></p>
-        <p><input type="submit" value="Submit"></p>
-    </form>`;
-};
+const fs = require('mz/fs');
+const path = require('path');
+const services = require('../services');
 
-let fn_signin = async (ctx, next) => {
-    ctx.response.body = ctx.request.body;
-};
 
 module.exports = {
-    'GET /': fn_index,
-    'POST /signin': fn_signin
+    'GET /': async (ctx, next) => {
+        let root = path.resolve(__dirname, '..');
+        //TODO 应该先判断是否登陆
+        var html = await fs.readFile(root+'/pages/html/login.html');
+    
+        ctx.response.type = 'text/html; charset=utf-8';
+        ctx.response.body = html;
+        // const userSvc = services.userSvc;
+        // var html = await userSvc.getProducts();
+    }
 }

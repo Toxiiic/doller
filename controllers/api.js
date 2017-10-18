@@ -1,4 +1,4 @@
-const products = require('../user');
+const products = require('../services/svc-product');
 
 const APIError = require('../rest').APIError;
 
