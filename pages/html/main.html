@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8">
     <title>铜芯的账本</title>
-    <link rel="stylesheet" href="../assets/bootstrap/css/bootstrap.css">
-    <link rel="stylesheet" href="../assets/font-awesome-4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="../css/common.css">
+    <link rel="stylesheet" href="/pages/assets/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="/pages/assets/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/pages/css/common.css">
 </head>
 
 <body>
@@ -23,26 +23,25 @@
                         <span class="circle-btn fa fa-plus"></span>
                     </h5>
                     <ul class="ul-type">
-                        <li class="bolder" v-for="type in types" :style="'border-color:'+type.color+';color:'+type.color">
+                        <li class="bolder"
+                        v-for="type in types"
+                        :style="typeStyle(type.color, type.id)"
+                        @click="chooseType(type.id)" >
                         {{type.name}}</li>
+                        <!-- :class="{active: input.typeId==type.id}" -->
 <!--                        <li class="active">吃饭</li>-->
                     </ul>
-                    <div class="hidden">
-                        <input type="radio" name="type" value="food">
-                        <input type="radio" name="type" value="food">
-                        <input type="radio" name="type" value="food">
-                        <input type="radio" name="type" value="food">
-                    </div>
                     <h5>金额
                         <span class="circle-btn fa fa-question"></span>
                     </h5>
-                    <input type="number" class="form-control" placeholder="">
+                    <input v-model="input.amount" type="number" class="form-control" placeholder="">
                     <h5>备注
                         <span class="circle-btn fa fa-question"></span>
                     </h5>
-                    <textarea class="form-control" placeholder=""></textarea>
+                    <textarea v-model="input.remark" class="form-control" placeholder=""></textarea>
 
-                    <button type="button" class="btn-confirm btn bg-brand">
+                    <button type="button" class="btn-confirm btn bg-brand"
+                        @click="submitRecord()" >
                         <span class="fa fa-check"></span>
                     </button>
                 </form>
@@ -81,10 +80,10 @@
     </div>
     </div>
 </body>
-<script src="../assets/bootstrap/js/bootstrap.min.js"></script>
-<script src="../assets/vue.js"></script>
-<script src="../assets/axios.min.js"></script>
-<script src="../js/main.js"></script>
+<script src="/pages/assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="/pages/assets/vue.js"></script>
+<script src="/pages/assets/axios.min.js"></script>
+<script src="/pages/js/main.js"></script>
 
 <script type="text/javascript">
     var qq_chat=true;

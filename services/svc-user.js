@@ -1,5 +1,9 @@
 
-var model = require('../model');
+const model = require('../model');
+
+const User = model.user;
+
+
 
 var id = 0;
 
@@ -22,8 +26,26 @@ var products = [
 ];
 
 module.exports = {
-     getProducts: async () => {
-        let User = model.user;
+    login: async (name = '', pwd = '') => {
+
+        let result = await User.findAll({
+            where: {
+                name : name
+            }
+        });
+        
+        if (result.length > 0) {
+            if(result[0].pwd == pwd) {
+                return {success: true};
+            } else {
+                return {success:false, err:'密码不正确呀'};
+            }
+        } else {
+            return {success:false, err:'用户不存在呀'};
+        }
+    },
+
+    getProducts: async () => {
         // var user = await User.create({
         //     name: '呃呃呃没有灯光',
         //     pwd: '123456'

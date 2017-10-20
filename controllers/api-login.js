@@ -4,18 +4,11 @@ const APIError = require('../rest').APIError;
 const userSvc = services.userSvc;
 
 module.exports = {
-    'GET /api/users': async (ctx, next) => {
-        // products.getProducts().then(function(result) {
-        //     ctx.rest({
-        //         products: result
-        //     });
-        // });
-
-        var result = await userSvc.getProducts();
+    'POST /api/login': async (ctx, next) => {
+        // console.log(ctx.session);
         ctx.rest({
-            products: result
-        });
-        console.log(result);
+            result: await userSvc.login(ctx.request.body.username, ctx.request.body.password)
+        }); 
     },
 
     'POST /api/products': async (ctx, next) => {

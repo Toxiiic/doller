@@ -2,16 +2,21 @@
 const Koa = require('koa');
 //返回函数
 // const getKoaRouter = require('koa-router');
-const bodyparser = require('koa-bodyparser');
+const bodyParser = require('koa-bodyparser');
 const controller = require('./controller');
 const staticFiles = require('./static-files');
 const Sequelize = require('sequelize');
 const config = require('./config');
 const rest = require('./rest');
+const session = require('koa-session2');
 
 
 const app = new Koa();
 
+app.use(bodyParser({
+    enableTypes: 'json'
+}));
+app.use(session());
 app.use(rest.restify());
 /** 中间件的注册顺序很重要！！*/
 app.use(async (ctx, next) => {
@@ -19,8 +24,6 @@ app.use(async (ctx, next) => {
     await next();
 });
 
-
-app.use(bodyparser());
 app.use(controller());
 //url以pages开头，则去找pages目录下的静态文件
 app.use(staticFiles('/pages/', __dirname + '/pages'));
