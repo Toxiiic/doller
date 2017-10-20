@@ -40,8 +40,11 @@
                     </h5>
                     <textarea v-model="input.remark" class="form-control" placeholder=""></textarea>
 
-                    <button type="button" class="btn-confirm btn bg-brand"
-                        @click="submitRecord()" >
+                    <button
+                        type="button"
+                        class="btn-confirm btn bg-brand"
+                        @click="submitRecord()"
+                        :class="{disable: noAmount}" >
                         <span class="fa fa-check"></span>
                     </button>
                 </form>

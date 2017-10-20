@@ -6,41 +6,41 @@ const vm = new Vue({
         remainder: 765,
         books: [
             {
-                id: 0,
+                id: 1,
                 name: '布老公大账本',
                 cover: ''
             }
         ],
         types: [
             {
-                id: 0,
+                id: 1,
                 name: '吃饭',
                 color: '#F6A623'
             },
             {
-                id: 1,
+                id: 2,
                 name: '理财账本',
                 color: '#D0011B'
             },
             {
-                id: 2,
+                id: 3,
                 name: '宝宝账本',
                 color: '#9013FE'
             },
             {
-                id: 3,
+                id: 4,
                 name: '衣服',
                 color: '#E61395'
             },
             {
-                id: 4,
+                id: 5,
                 name: '家居',
                 color: '#7ED321'
             }
         ],
         input: {
-            bookId: 0, //放在这里是想让用户传到后台
-            typeId: 0,
+            bookId: 1, //放在这里是想让用户传到后台
+            typeId: 1,
             amount: null,
             remark: null
         },
@@ -264,9 +264,15 @@ const vm = new Vue({
             this.input.typeId = typeId;
         },
         submitRecord: function () {
+            //计算属性能在js中使用吗
+            if(this.noAmount) {
+                return;
+            }
             axios.post('/api/record/add', this.input).then(function (result) {
-                console.log(result);
-                this.clearInput();
+                if(result.data.result) {
+                    vm.clearInput();
+                }
+                
             }).catch(function (error) {
                 console.log(error);
             });
@@ -293,6 +299,8 @@ const vm = new Vue({
         }
     },
     computed: {
-        
+        noAmount: function() {
+            return this.input.amount == '' || this.input.amount == null;
+        }
     }
 });

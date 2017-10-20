@@ -1,5 +1,6 @@
 $gray-blue: #9396BF;
 $brand-color: #4e00ff;
+$disable-color: #d3d5ec;
 
 @font-face {
     font-family: din-light;
@@ -105,6 +106,10 @@ form.form-add-record {
         width: 100px;
         float: right;
         margin-top: 5px;
+    }
+    .btn-confirm.disable {
+        background: $disable-color;
+        cursor: no-drop;
     }
 }
 

@@ -1,10 +1,14 @@
 
-const Record = require('../model').record;
+const model = require('../model');
+const Record = model.record;
+const Book = model.book;
+const Type = model.type;
 
 module.exports = {
     addRecord: async (body) => {
         console.log(body);
 
+        //Add
         let record = await Record.create({
             book_id: body.bookId,
             type_id: body.typeId,
@@ -12,22 +16,26 @@ module.exports = {
             remark: body.remark,
             date: new Date()
         });
-        console.log(record);
-        // let result = await User.findAll({
-        //     where: {
-        //         name : name
-        //     }
-        // });
+
+        //Logic
+        let type = await Type.findAll({
+            where: {
+                id: body.typeId
+            }
+        });
+        let book = await Book.findAll({
+            where: {
+                id: body.bookId
+            }
+        });
+
+        //给对应的book的reminder增减
+        let flag = type[0].is_in ? 1 : -1;
+        book[0].reminder += flag * body.amount;
+
+        await book[0].save();
         
-        // if (result.length > 0) {
-        //     if(result[0].pwd == pwd) {
-        //         return {success: true};
-        //     } else {
-        //         return {success:false, err:'密码不正确呀'};
-        //     }
-        // } else {
-        //     return {success:false, err:'用户不存在呀'};
-        // }
+        return true;
     },
 
 };
