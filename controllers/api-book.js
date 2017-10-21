@@ -1,16 +1,12 @@
 const services = require('../services');
 const APIError = require('../rest').APIError;
 
-const userSvc = services.userSvc;
+const bookSvc = services.bookSvc;
 
 module.exports = {
-    'DELETE /api/products/:id': async (ctx, next) => {
-        console.log(`delete product ${ctx.params.id}...`);
-        var p = userSvc.deleteProduct(ctx.params.id);
-        if (p) {
-            ctx.rest(p);
-        } else {
-            throw new APIError('product:not_found', 'product not found by id.');
-        }
+
+    'GET /api/books': async (ctx, next) => {
+        let books = await bookSvc.getBooksInfo(ctx.session.userId);
+        ctx.rest(books);
     }
 };

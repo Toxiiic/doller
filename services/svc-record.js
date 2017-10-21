@@ -37,5 +37,12 @@ module.exports = {
         
         return true;
     },
-
+    getRecords: async (bookId) => {
+        let records = await Record.findAll({
+            where: {
+                book_id: bookId
+            }
+        });
+        return records;
+    },
 };

@@ -3,14 +3,19 @@
 const vm = new Vue({
     el: '#app',
     data: {
+        userinfo: null,
+        books: [],
+        types: null,
+        records: null,
+
         remainder: 765,
-        books: [
-            {
-                id: 1,
-                name: '布老公大账本',
-                cover: ''
-            }
-        ],
+        // books: [
+        //     {
+        //         id: 1,
+        //         name: '布老公大账本',
+        //         cover: ''
+        //     }
+        // ],
         types: [
             {
                 id: 1,
@@ -39,7 +44,7 @@ const vm = new Vue({
             }
         ],
         input: {
-            bookId: 1, //放在这里是想让用户传到后台
+            bookId: 3, //放在这里是想让用户传到后台
             typeId: 1,
             amount: null,
             remark: null
@@ -253,11 +258,41 @@ const vm = new Vue({
         ]
     },
     mounted: function () {
+        let vm = this;
         // axios.get('/api/users').then(function(response) {
         //     console.log(response.data.products);
         // }).catch(function(error) {
         //     console.log(`${error}`);
         // });
+        
+        //user信息（当前登陆的一个user）
+        axios.get('/api/userinfo').then(function(response) {
+            vm.userinfo = response.data;
+        }).catch(function(error) {
+            console.log(`${error}`);
+        });
+        //books信息（当前用户的所有book）
+        axios.get('/api/books').then(function(response) {
+            vm.books = response.data;
+            //页面加载完成默认打开第一个book
+            vm.input.bookId = vm.books[0].id;
+
+            //types信息（当前打开book的所有types）
+            axios.get(`/api/types/${vm.input.bookId}`).then(function(response) {
+                vm.types = response.data;
+            }).catch(function(error) {
+                console.log(`${error}`);
+            });
+            //records信息（当前打开book的所有records）
+            axios.get(`/api/records/${vm.input.bookId}`).then(function(response) {
+                console.log(response.data);
+            }).catch(function(error) {
+                console.log(`${error}`);
+            });
+
+        }).catch(function(error) {
+            console.log(`${error}`);
+        });
     },
     methods: {
         chooseType: function (typeId) {
@@ -301,6 +336,13 @@ const vm = new Vue({
     computed: {
         noAmount: function() {
             return this.input.amount == '' || this.input.amount == null;
+        },
+        curBook: function() {
+            for(let book of this.books) {
+                if(book.id == this.input.bookId) {
+                    return book;
+                }
+            }
         }
     }
 });
