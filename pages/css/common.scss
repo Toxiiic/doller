@@ -25,6 +25,11 @@ body {
     }
 }
 
+//Vue
+[v-cloak] {
+  display: none;
+}
+
 /**
 重用类
 */
@@ -160,6 +165,7 @@ form.form-add-record {
                 .summary {
                     margin: 0 10px;
                     vertical-align: top;
+                    width: 70px;
                     .total {
                         font-size: 16pt;
                         line-height: .7;

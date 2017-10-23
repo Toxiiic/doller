@@ -11,7 +11,7 @@
 
 <body>
     <div id="app">
-        <div class="row">
+        <div class="row" v-cloak>
         <div class="col-left col-sm-3">
             <div class="panel-control">
                 <h5>{{curBook.name}}</h5>
@@ -56,7 +56,7 @@
             <ul class="list-day">
                 <li v-for="record in records">
                     <div class="title-month">
-                        <span class="month inline-block din-bold">{{record.month}}</span>
+                        <span class="month inline-block din-bold">{{record.year}}/{{record.month}}</span>
                         <span class="in-out inline-block">
                             <div class="color-out">-¥{{record.out}}</div>
                             <div class="color-in">+¥{{record.in}}</div>
@@ -64,14 +64,14 @@
                     </div>
                     <ul class="ul-days">
                         <li v-for="dayRecord in record.dayRecords">
-                            <span class="date inline-block din-bold">{{dayRecord.date}}</span>
+                            <span class="date inline-block din-bold">{{dayRecord.day}}</span>
                             <span class="summary inline-block">
-                                <div class="total">-¥{{dayRecord.out}}</div>
+                                <div class="total">¥{{dayRecord.out}}</div>
                                 <div class="remainder">¥{{dayRecord.remainder}}</div>
                             </span>
                             <ul class="day-detail inline-block">
-                                <li v-for="detail in dayRecord.detailRecords" :style="'border-color:'+detail.color">
-                                    <span class="amount" :style="'background:'+detail.color">¥<span class="din-bold">{{detail.amount}}</span></span><span class="type" :style="'color:'+detail.color">{{detail.type}}</span>
+                                <li v-for="detail in dayRecord.detailRecords" :style="'border-color:'+getByTypeId('color', detail.typeId)">
+                                    <span class="amount" :style="'background:'+getByTypeId('color', detail.typeId)">¥<span class="din-bold">{{detail.amount}}</span></span><span class="type" :style="'color:'+getByTypeId('color', detail.typeId)">{{getByTypeId('name', detail.typeId)}}</span>
                                 </li>
                             </ul>
                         </li>
@@ -83,16 +83,9 @@
     </div>
     </div>
 </body>
+<script src="/pages/assets/jquery.min.js"></script>
 <script src="/pages/assets/bootstrap/js/bootstrap.min.js"></script>
 <script src="/pages/assets/vue.js"></script>
 <script src="/pages/assets/axios.min.js"></script>
 <script src="/pages/js/main.js"></script>
-
-<script type="text/javascript">
-    var qq_chat=true;
-    function PlayJsAdPopWin(){
-    if(qq_chat){
-    popwin=window.location.href="tencent://message/?Menu=yes&uin=1906594424&Service=58&SigT=A7F6FEA02730C98874D79288234EECBC6416FB552738CBD91144113A447228F1699B06F3FA60A1F15BF9A8F78935CD0752D707D2670041BECCCB750D604D6DB9792D4B9D7FAECDC411FF479277ED0E3BD37C44A6CD529D8E21EC9AF94CA9C35F63F04C4AAB6025D9D4F7156A89FF7FD04B54300933CD1B0E&;"}
-    };
-</script>
 </html>

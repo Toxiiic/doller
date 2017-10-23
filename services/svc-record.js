@@ -43,6 +43,21 @@ module.exports = {
                 book_id: bookId
             }
         });
+
+        // let aggr = await Record.findAll({
+        //     attributes: [
+        //         'sum',
+        //         [
+        //             Sequelize.fn('SUM', Sequelize.col('amount')),
+        //             'sum'
+        //         ]
+        //     ],
+        //     group: 'date',
+        //     raw: true
+        // });
+        // let aggr = await Record.aggregate('date', Record.sum, {});
+
+
         return records;
     },
 };

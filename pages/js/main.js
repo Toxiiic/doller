@@ -49,212 +49,31 @@ const vm = new Vue({
             amount: null,
             remark: null
         },
+        //有些变化：1.year，month，day全部分开了；2.type和color都由type id获取
         records: [
             {
-                month: '2017/10',
+                // month: '2017/10',
+                year: '2017',
+                month: '10',
                 out: 1208,
                 in: 6000,
                 dayRecords: [{
-                    date: '10-14',
+                    // date: '10-14',
+                    day: '14',
                     out: 16,
                     remainder: 365,
                     detailRecords: [
                         {
                             amount: 12,
-                            type: '吃饭',
+                            typeId: 5,
                             color: '#F6A623'
                         }, {
                             amount: 12,
-                            type: '吃饭',
+                            typeId: 4,
                             color: '#D0011B'
-                        }, {
-                            amount: 12,
-                            type: '吃饭',
-                            color: '#E61395'
-                        }, {
-                            amount: 12,
-                            type: '吃饭',
-                            color: '#F6A623'
-                        }]
-                }, {
-                    date: '10-14',
-                    out: 16,
-                    remainder: 365,
-                    detailRecords: [
-                        {
-                            amount: 12,
-                            type: '吃饭',
-                            color: '#F6A623'
-                        }, {
-                            amount: 12,
-                            type: '吃饭',
-                            color: '#F6A623'
-                        }]
-                }, {
-                    date: '10-14',
-                    out: 16,
-                    remainder: 365,
-                    detailRecords: [
-                        {
-                            amount: 12,
-                            type: '吃饭',
-                            color: '#F6A623'
                         }]
                 }]
-            }, {
-                month: '2017/10',
-                out: 1208,
-                in: 6000,
-                dayRecords: [{
-                    date: '10-14',
-                    out: 16,
-                    remainder: 365,
-                    detailRecords: [
-                        {
-                            amount: 12,
-                            type: '吃饭',
-                            color: '#F6A623'
-                        }, {
-                            amount: 12,
-                            type: '吃饭',
-                            color: '#D0011B'
-                        }, {
-                            amount: 12,
-                            type: '吃饭',
-                            color: '#E61395'
-                        }, {
-                            amount: 12,
-                            type: '吃饭',
-                            color: '#F6A623'
-                        }]
-                }, {
-                    date: '10-14',
-                    out: 16,
-                    remainder: 365,
-                    detailRecords: [
-                        {
-                            amount: 12,
-                            type: '吃饭',
-                            color: '#F6A623'
-                        }, {
-                            amount: 12,
-                            type: '吃饭',
-                            color: '#F6A623'
-                        }]
-                }, {
-                    date: '10-14',
-                    out: 16,
-                    remainder: 365,
-                    detailRecords: [
-                        {
-                            amount: 12,
-                            type: '吃饭',
-                            color: '#F6A623'
-                        }]
-                }]
-            }, {
-                month: '2017/10',
-                out: 1208,
-                in: 6000,
-                dayRecords: [{
-                    date: '10-14',
-                    out: 16,
-                    remainder: 365,
-                    detailRecords: [
-                        {
-                            amount: 12,
-                            type: '吃饭',
-                            color: '#F6A623'
-                        }, {
-                            amount: 12,
-                            type: '吃饭',
-                            color: '#D0011B'
-                        }, {
-                            amount: 12,
-                            type: '吃饭',
-                            color: '#E61395'
-                        }, {
-                            amount: 12,
-                            type: '吃饭',
-                            color: '#F6A623'
-                        }]
-                }, {
-                    date: '10-14',
-                    out: 16,
-                    remainder: 365,
-                    detailRecords: [
-                        {
-                            amount: 12,
-                            type: '吃饭',
-                            color: '#F6A623'
-                        }, {
-                            amount: 12,
-                            type: '吃饭',
-                            color: '#F6A623'
-                        }]
-                }, {
-                    date: '10-14',
-                    out: 16,
-                    remainder: 365,
-                    detailRecords: [
-                        {
-                            amount: 12,
-                            type: '吃饭',
-                            color: '#F6A623'
-                        }]
-                }]
-            }, {
-                month: '2017/10',
-                out: 1208,
-                in: 6000,
-                dayRecords: [{
-                    date: '10-14',
-                    out: 16,
-                    remainder: 365,
-                    detailRecords: [
-                        {
-                            amount: 12,
-                            type: '吃饭',
-                            color: '#F6A623'
-                        }, {
-                            amount: 12,
-                            type: '吃饭',
-                            color: '#D0011B'
-                        }, {
-                            amount: 12,
-                            type: '吃饭',
-                            color: '#E61395'
-                        }, {
-                            amount: 12,
-                            type: '吃饭',
-                            color: '#F6A623'
-                        }]
-                }, {
-                    date: '10-14',
-                    out: 16,
-                    remainder: 365,
-                    detailRecords: [
-                        {
-                            amount: 12,
-                            type: '吃饭',
-                            color: '#F6A623'
-                        }, {
-                            amount: 12,
-                            type: '吃饭',
-                            color: '#F6A623'
-                        }]
-                }, {
-                    date: '10-14',
-                    out: 16,
-                    remainder: 365,
-                    detailRecords: [
-                        {
-                            amount: 12,
-                            type: '吃饭',
-                            color: '#F6A623'
-                        }]
-                }]
-            },
+            }
         ]
     },
     mounted: function () {
@@ -275,17 +94,20 @@ const vm = new Vue({
         axios.get('/api/books').then(function(response) {
             vm.books = response.data;
             //页面加载完成默认打开第一个book
-            vm.input.bookId = vm.books[0].id;
+            vm.input.bookId = vm.books[2].id;
 
             //types信息（当前打开book的所有types）
             axios.get(`/api/types/${vm.input.bookId}`).then(function(response) {
                 vm.types = response.data;
+                vm.input.typeId = vm.types[0].id;
             }).catch(function(error) {
                 console.log(`${error}`);
             });
             //records信息（当前打开book的所有records）
             axios.get(`/api/records/${vm.input.bookId}`).then(function(response) {
                 console.log(response.data);
+                //把一条条的数据转换成可以绑定的树形格式
+                vm.records = getGoodRecords(response.data);
             }).catch(function(error) {
                 console.log(`${error}`);
             });
@@ -331,6 +153,14 @@ const vm = new Vue({
         clearInput: function() {
             this.input.amount = null;
             this.input.remark = null;
+        },
+        /**
+         * 传入属性名，得到id对应的type的属性值
+         */
+        getByTypeId: function(key, id) {
+            return vm.types.find((typeObj) => {
+                return typeObj.id == id;
+            })[key];
         }
     },
     computed: {
@@ -338,11 +168,103 @@ const vm = new Vue({
             return this.input.amount == '' || this.input.amount == null;
         },
         curBook: function() {
-            for(let book of this.books) {
-                if(book.id == this.input.bookId) {
-                    return book;
-                }
-            }
+            return this.books.find((book) => {
+                return book.id == this.input.bookId;
+            });
+            // for(let book of this.books) {
+            //     if(book.id == this.input.bookId) {
+            //         return book;
+            //     }
+            // }
         }
     }
 });
+
+
+
+function getGoodRecords (rawRecords) {
+    let records = [];
+    let rawDate; //current rawRecord date obj
+    let monthStr;
+    let ifExistMonth, ifNextMonth, ifExistDay, ifNextDay;
+    let lastMonthDayRecords;
+    let daySum = 0;
+    let flag = 1;
+    // debugger
+    for(let rawRecord of rawRecords) {
+        rawDate = new Date(rawRecord.date);
+        
+        /**
+         * 是否之前没有
+         * 如果有的话是否是下个月
+         */
+        ifExistMonth = ifNextMonth = false;
+        //1.是否之前有
+        ifExistMonth = !!records.length;
+        //2.如果之前有，是否是下个月
+        if(ifExistMonth) {
+            ifNextMonth = records[records.length-1].month != rawDate.getMonth()+1;
+        }
+        //如果之前没有，或者有但是这是下个月
+        if(!ifExistMonth || ifNextMonth) {
+            //如果之前有（即下月）
+            if(ifExistMonth) {
+                //TODO 把之前的加和放进之前month的数据中
+                // month.amount = sum;
+            }
+            //创，写，推
+            month = {
+                year: rawDate.getFullYear(),
+                month: rawDate.getMonth() + 1,
+                dayRecords: []
+            };
+            records.push(month);
+        }
+
+        /**
+         * 
+        */
+        ifExistDay = ifNextDay = false;
+        //最后一个月的dayRecords
+        lastMonthDayRecords = records[records.length-1].dayRecords;
+        //1.是否之前没有
+        ifExistDay = !!lastMonthDayRecords.length;
+        //2.如果之前有，是否是下一天
+        if(ifExistDay) {
+            ifNextDay = lastMonthDayRecords[lastMonthDayRecords.length-1].day != rawDate.getDate();
+        }
+        //如果之前没有，或者有但是这是下一天
+        if(!ifExistDay || ifNextDay) {
+            //如果之前有（即下月）
+            if(ifExistDay) {
+                //TODO 把之前的加和放进之前day的数据中
+                day.out = daySum;
+                daySum = 0;
+            }
+            //创，写，推
+            day = {
+                day: rawDate.getDate(),
+                detailRecords: []
+            };
+            lastMonthDayRecords.push(day);
+        }
+
+
+        //创，写，推
+        detail = {
+            amount: rawRecord.amount,
+            typeId: rawRecord.type_id
+            // color: rawRecord.color,
+        };
+        lastMonthDayRecords[lastMonthDayRecords.length-1].detailRecords.push(detail);
+        
+        //得到这条记录的正负，并做和
+        flag = vm.getByTypeId('is_in', rawRecord.type_id) == null ? -1 : 1;
+        daySum += rawRecord.amount * flag;
+    }
+    //将和写入天对象
+    day.out = daySum;
+
+
+    return records;
+}

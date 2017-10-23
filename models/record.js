@@ -3,7 +3,7 @@ const db = require('../db');
 module.exports = db.defineModel('record', {
     book_id: db.INTEGER,
     type_id: db.INTEGER,
-    date: db.DATE,
+    date: db.DATEONLY,
     amount: db.INTEGER,
     remark: {
         type: db.STRING(50),
