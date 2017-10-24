@@ -1,5 +1,4 @@
 
-
 const vm = new Vue({
     el: '#app',
     data: {
@@ -20,12 +19,6 @@ const vm = new Vue({
     },
     mounted: function () {
         let vm = this;
-        // axios.get('/api/users').then(function(response) {
-        //     console.log(response.data.products);
-        // }).catch(function(error) {
-        //     console.log(`${error}`);
-        // });
-        
         //user信息（当前登陆的一个user）
         axios.get('/api/userinfo').then(function(response) {
             vm.userinfo = response.data;
@@ -38,12 +31,13 @@ const vm = new Vue({
             //页面加载完成默认打开第一个book
             // vm.input.bookId = vm.books[0].id;
             vm.changeBook(vm.books[0].id);
-
-            
-
         }).catch(function(error) {
             console.log(`${error}`);
         });
+    },
+    updated: function() {
+        //TODO 执行起来蛮冗余
+        $('[data-toggle="tooltip"]').tooltip()
     },
     methods: {
         chooseType: function (typeId) {
@@ -125,11 +119,6 @@ const vm = new Vue({
             return this.books.find((book) => {
                 return book.id == this.input.bookId;
             });
-            // for(let book of this.books) {
-            //     if(book.id == this.input.bookId) {
-            //         return book;
-            //     }
-            // }
         }
     }
 });
@@ -207,8 +196,8 @@ function getGoodRecords (rawRecords) {
         //创，写，推
         detail = {
             amount: rawRecord.amount,
-            typeId: rawRecord.type_id
-            // color: rawRecord.color,
+            typeId: rawRecord.type_id,
+            remark: rawRecord.remark
         };
         lastMonthDayRecords[lastMonthDayRecords.length-1].detailRecords.push(detail);
         
