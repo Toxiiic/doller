@@ -41,7 +41,8 @@ module.exports = {
         let records = await Record.findAll({
             where: {
                 book_id: bookId
-            }
+            },
+            order: [['date', 'DESC']]
         });
 
         // let aggr = await Record.findAll({

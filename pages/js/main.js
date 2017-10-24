@@ -7,74 +7,16 @@ const vm = new Vue({
         books: [],
         types: null,
         records: null,
-
         remainder: 765,
-        // books: [
-        //     {
-        //         id: 1,
-        //         name: '布老公大账本',
-        //         cover: ''
-        //     }
-        // ],
-        types: [
-            {
-                id: 1,
-                name: '吃饭',
-                color: '#F6A623'
-            },
-            {
-                id: 2,
-                name: '理财账本',
-                color: '#D0011B'
-            },
-            {
-                id: 3,
-                name: '宝宝账本',
-                color: '#9013FE'
-            },
-            {
-                id: 4,
-                name: '衣服',
-                color: '#E61395'
-            },
-            {
-                id: 5,
-                name: '家居',
-                color: '#7ED321'
-            }
-        ],
+        types: [],
         input: {
-            bookId: 3, //放在这里是想让用户传到后台
+            bookId: null, /* 这个book不可以直接修改，必须调用changeBook() */
             typeId: 1,
             amount: null,
             remark: null
         },
         //有些变化：1.year，month，day全部分开了；2.type和color都由type id获取
-        records: [
-            {
-                // month: '2017/10',
-                year: '2017',
-                month: '10',
-                out: 1208,
-                in: 6000,
-                dayRecords: [{
-                    // date: '10-14',
-                    day: '14',
-                    out: 16,
-                    remainder: 365,
-                    detailRecords: [
-                        {
-                            amount: 12,
-                            typeId: 5,
-                            color: '#F6A623'
-                        }, {
-                            amount: 12,
-                            typeId: 4,
-                            color: '#D0011B'
-                        }]
-                }]
-            }
-        ]
+        records: []
     },
     mounted: function () {
         let vm = this;
@@ -94,23 +36,10 @@ const vm = new Vue({
         axios.get('/api/books').then(function(response) {
             vm.books = response.data;
             //页面加载完成默认打开第一个book
-            vm.input.bookId = vm.books[2].id;
+            // vm.input.bookId = vm.books[0].id;
+            vm.changeBook(vm.books[0].id);
 
-            //types信息（当前打开book的所有types）
-            axios.get(`/api/types/${vm.input.bookId}`).then(function(response) {
-                vm.types = response.data;
-                vm.input.typeId = vm.types[0].id;
-            }).catch(function(error) {
-                console.log(`${error}`);
-            });
-            //records信息（当前打开book的所有records）
-            axios.get(`/api/records/${vm.input.bookId}`).then(function(response) {
-                console.log(response.data);
-                //把一条条的数据转换成可以绑定的树形格式
-                vm.records = getGoodRecords(response.data);
-            }).catch(function(error) {
-                console.log(`${error}`);
-            });
+            
 
         }).catch(function(error) {
             console.log(`${error}`);
@@ -158,9 +87,34 @@ const vm = new Vue({
          * 传入属性名，得到id对应的type的属性值
          */
         getByTypeId: function(key, id) {
-            return vm.types.find((typeObj) => {
-                return typeObj.id == id;
+            return vm.types.find((obj) => {
+                return obj.id == id;
             })[key];
+        },
+        getByBookId: function(key, id) {
+            return vm.books.find((obj) => {
+                return obj.id == id;
+            })[key];
+        },
+        changeBook: function(bookId) {
+            //先把input里的bookId换掉
+            vm.input.bookId = bookId;
+            //请求这个book的信息
+            //types信息（当前打开book的所有types）
+            axios.get(`/api/types/${bookId}`).then(function(response) {
+                vm.types = response.data;
+                vm.input.typeId = vm.types[0].id;
+            }).catch(function(error) {
+                console.log(`${error}`);
+            });
+            //records信息（当前打开book的所有records）
+            axios.get(`/api/records/${bookId}`).then(function(response) {
+                console.log(response.data);
+                //把一条条的数据转换成可以绑定的树形格式
+                vm.records = getGoodRecords(response.data);
+            }).catch(function(error) {
+                console.log(`${error}`);
+            });
         }
     },
     computed: {

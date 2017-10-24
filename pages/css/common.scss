@@ -42,6 +42,10 @@ body {
 .inline-block {
     display: inline-block;
 }
+
+.text-center {
+    text-align: center;
+}
 .circle-btn {
     background: rgba(147, 149, 191, 0.1);
     text-align: center;
@@ -77,6 +81,18 @@ body {
 /**
 重用组件
 */
+
+.book-cover {
+    width: 60px;
+    height: 85px;
+    display: inline-block;
+    background-size: cover!important;
+    background-position: center!important;
+    border-radius: 5px;
+    box-shadow: 1px 0px 15px 1px rgba(125, 132, 169, 0.4);
+    cursor: pointer;
+}
+
 form.form-add-record {
     margin-top: 50px;
     
@@ -122,12 +138,17 @@ form.form-add-record {
 
 /* 页面 */
 .col-left {
+    height: 100vh;
     padding-right: 20px;
     background: rgba(147, 150, 191, 0.03);
     .panel-control {
         float: right;
         max-width: 300px;
 
+        .book-cover {
+            vertical-align: bottom;
+            margin: 30px 8px 0 0;
+        }
         .remainder {
             font-size: 20pt;
             font-weight: bolder;
