@@ -6,7 +6,7 @@ const vm = new Vue({
         books: [],
         types: null,
         records: null,
-        currentBookId: null, //当前选择的bookId /* 这个book不可以直接修改，必须调用changeBook() */
+        currentBookId: null, //当前选择的bookId /* 这个book不可以直接修改，必须调用loadBook() */
         input: {
             //bookId: null, 
             typeId: 1,
@@ -34,7 +34,7 @@ const vm = new Vue({
         axios.get('/api/books').then(function(response) {
             vm.books = response.data;
             //页面加载完成默认打开第一个book
-            vm.changeBook(vm.books[0].id);
+            vm.loadBook(vm.books[0].id);
         }).catch(function(error) {
             console.log(`${error}`);
         });
@@ -55,6 +55,7 @@ const vm = new Vue({
             axios.post(`/api/record/add/${this.currentBookId}`, this.input).then(function (result) {
                 if(result.data.result) {
                     vm.clearInput();
+                    vm.reloadBook();
                 }
             }).catch(function (error) {
                 console.log(error);
@@ -93,7 +94,7 @@ const vm = new Vue({
                 return obj.id == id;
             })[key];
         },
-        changeBook: function(bookId) {
+        loadBook: function(bookId) {
             //先把input里的bookId换掉
             vm.currentBookId = bookId;
             //请求这个book的信息
@@ -113,6 +114,9 @@ const vm = new Vue({
                 console.log(`${error}`);
             });
         },
+        reloadBook: () => {
+            vm.loadBook(vm.currentBookId);
+        },
         clearTypesInput: (vm) => {
             vm.fillTypesInput({
                 id: null,
@@ -131,9 +135,8 @@ const vm = new Vue({
         },
         submitTypeInput: () => {
             axios.post(`/api/types/edit/${vm.currentBookId}`, vm.typesInput).then(function (result) {
-                if(result.data.result) {
-                    // vm.clearInput();
-                    console.log(result.data.result);
+                if(result.data) {
+                    vm.reloadBook();
                 }
             }).catch(function (error) {
                 console.log(error);

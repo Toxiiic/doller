@@ -19,11 +19,12 @@
                     <div class="inline-block">
                         <h5>{{curBook.name}}</h5>
                         <div class="remainder din-bold">¥{{curBook.reminder}}</div>
+                        <span class="circle-btn fa fa-pencil" data-toggle="modal" data-target="#bookModal"></span>
                     </div>
                     <form class="form-add-record">
                         <h5>种类
                             <span class="circle-btn fa fa-question" data-original-title=""></span>
-                            <span class="circle-btn fa fa-plus" data-toggle="modal" data-target="#typesModal"></span>
+                            <span class="circle-btn fa fa-pencil" data-toggle="modal" data-target="#typesModal"></span>
                         </h5>
                         <ul class="ul-type">
                             <li class="bolder" v-for="type in types" :style="typeStyle(type.color, type.id)" @click="chooseType(type.id)">
@@ -92,7 +93,7 @@
                     </div>
                     <div class="modal-body">
                         <ul class="text-center">
-                            <li v-for="book in books" class="inline-block"><a class="book-cover" :style="'background:url(/pages/img/'+getByBookId('cover', book.id)+')'" style="margin: 0 5px" @click="changeBook(book.id)" data-dismiss="modal"></a></li>
+                            <li v-for="book in books" class="inline-block"><a class="book-cover" :style="'background:url(/pages/img/'+getByBookId('cover', book.id)+')'" style="margin: 0 5px" @click="loadBook(book.id)" data-dismiss="modal"></a></li>
                         </ul>
                     </div>
                 </div>
@@ -154,6 +155,55 @@
                 </div>
             </div>
         </div>
+
+
+        <!-- book操作 Modal -->
+        <div class="modal fade" id="bookModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">账本信息修改</h5>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        
+                        <form>
+                            <h5>种类名称
+                                <span class="circle-btn fa fa-question"></span>
+                            </h5>
+                            <input v-model="typesInput.name" type="text" class="form-control" placeholder="">
+                            <h5>种类颜色
+                                <span class="circle-btn fa fa-question"></span>
+                            </h5>
+                            <input v-model="typesInput.color" type="color" class="form-control" placeholder="">
+                            <h5>种类备注
+                                <span class="circle-btn fa fa-question"></span>
+                            </h5>
+                            <textarea v-model="typesInput.remark" class="form-control"></textarea>
+                            <div class="form-check">
+                                    
+                                    <h5>
+                                    是否收入
+                                    <span class="circle-btn fa fa-question"></span>
+                                    <input v-model="typesInput.isIn" type="checkbox" class="form-check-input">
+                                </h5>
+                            </div>
+                            <label class="form-check-label">
+                                
+                            </label>
+                        </form>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary"
+                                @click="submitBookInput()" data-dismiss="modal">保存修改</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 </body>
 <script src="/pages/assets/jquery.min.js"></script>
