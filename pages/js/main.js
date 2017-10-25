@@ -6,19 +6,24 @@ const vm = new Vue({
         books: [],
         types: null,
         records: null,
-        remainder: 765,
-        types: [],
+        currentBookId: null, //当前选择的bookId /* 这个book不可以直接修改，必须调用changeBook() */
         input: {
-            bookId: null, /* 这个book不可以直接修改，必须调用changeBook() */
+            //bookId: null, 
             typeId: 1,
             amount: null,
             remark: null
         },
+        typesInput: {
+            name: null,
+            color: null,
+            remark: null,
+            isIn: null,
+        }
         //有些变化：1.year，month，day全部分开了；2.type和color都由type id获取
-        records: []
     },
     mounted: function () {
         let vm = this;
+        // this.clearTypesInput(this);
         //user信息（当前登陆的一个user）
         axios.get('/api/userinfo').then(function(response) {
             vm.userinfo = response.data;
@@ -29,7 +34,6 @@ const vm = new Vue({
         axios.get('/api/books').then(function(response) {
             vm.books = response.data;
             //页面加载完成默认打开第一个book
-            // vm.input.bookId = vm.books[0].id;
             vm.changeBook(vm.books[0].id);
         }).catch(function(error) {
             console.log(`${error}`);
@@ -48,11 +52,10 @@ const vm = new Vue({
             if(this.noAmount) {
                 return;
             }
-            axios.post('/api/record/add', this.input).then(function (result) {
+            axios.post(`/api/record/add/${this.currentBookId}`, this.input).then(function (result) {
                 if(result.data.result) {
                     vm.clearInput();
                 }
-                
             }).catch(function (error) {
                 console.log(error);
             });
@@ -92,7 +95,7 @@ const vm = new Vue({
         },
         changeBook: function(bookId) {
             //先把input里的bookId换掉
-            vm.input.bookId = bookId;
+            vm.currentBookId = bookId;
             //请求这个book的信息
             //types信息（当前打开book的所有types）
             axios.get(`/api/types/${bookId}`).then(function(response) {
@@ -109,6 +112,32 @@ const vm = new Vue({
             }).catch(function(error) {
                 console.log(`${error}`);
             });
+        },
+        clearTypesInput: (vm) => {
+            vm.fillTypesInput({
+                id: null,
+                name: null,
+                color: '#4e00ff',
+                remark: null,
+                isIn: false,
+            });
+        },
+        fillTypesInput: (typeObj) => {
+            vm.typesInput.id = typeObj.id;
+            vm.typesInput.name = typeObj.name;
+            vm.typesInput.color = typeObj.color;
+            vm.typesInput.remark = typeObj.remark;
+            vm.typesInput.isIn = typeObj.is_in;
+        },
+        submitTypeInput: () => {
+            axios.post(`/api/types/edit/${vm.currentBookId}`, vm.typesInput).then(function (result) {
+                if(result.data.result) {
+                    // vm.clearInput();
+                    console.log(result.data.result);
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
         }
     },
     computed: {
@@ -117,7 +146,7 @@ const vm = new Vue({
         },
         curBook: function() {
             return this.books.find((book) => {
-                return book.id == this.input.bookId;
+                return book.id == this.currentBookId;
             });
         }
     }
@@ -181,7 +210,7 @@ function getGoodRecords (rawRecords) {
             //如果之前有（即下月）
             if(ifExistDay) {
                 //TODO 把之前的加和放进之前day的数据中
-                day.out = daySum;
+                day.out = daySum.toFixed(2);
                 daySum = 0;
             }
             //创，写，推
@@ -206,7 +235,7 @@ function getGoodRecords (rawRecords) {
         daySum += rawRecord.amount * flag;
     }
     //将和写入天对象
-    day.out = daySum;
+    day.out = daySum.toFixed(2);
 
 
     return records;

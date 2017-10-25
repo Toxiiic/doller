@@ -5,12 +5,12 @@ const Book = model.book;
 const Type = model.type;
 
 module.exports = {
-    addRecord: async (body) => {
+    addRecord: async (bookId, body) => {
         console.log(body);
 
         //Add
         let record = await Record.create({
-            book_id: body.bookId,
+            book_id: bookId,
             type_id: body.typeId,
             amount: body.amount,
             remark: body.remark,
@@ -25,7 +25,7 @@ module.exports = {
         });
         let book = await Book.findAll({
             where: {
-                id: body.bookId
+                id: bookId
             }
         });
 

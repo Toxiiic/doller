@@ -8,10 +8,10 @@ module.exports = {
         let records = await recordSvc.getRecords(ctx.params.bookId);
         ctx.rest(records);
     },
-    'POST /api/record/add': async (ctx, next) => {
+    'POST /api/record/add/:bookId': async (ctx, next) => {
         
         ctx.rest({
-            result: await recordSvc.addRecord(ctx.request.body)
+            result: await recordSvc.addRecord(ctx.params.bookId, ctx.request.body)
         }); 
     }
 };

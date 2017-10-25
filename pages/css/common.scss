@@ -24,6 +24,12 @@ body {
         margin: 15px 0 8px;
     }
 }
+input[type=color] {
+    height: 33px;
+    width: 45px;
+    padding: 0;
+    border: 0;
+}
 
 //Vue
 [v-cloak] {
@@ -100,7 +106,7 @@ form.form-add-record {
         li {
             width: 64px;
             height: 45px;
-            padding-top: 12px;
+            padding-top: 14px;
             cursor: pointer;
             border-radius: 5px;
             border: 1px solid #D0011B;
@@ -112,6 +118,7 @@ form.form-add-record {
             margin: 5px;
             vertical-align: middle;
             background: white;
+            line-height: 1.1;
         }
         li.active {
             color: white;
@@ -221,6 +228,31 @@ form.form-add-record {
                     }
                 }
             }
+        }
+    }
+}
+
+#typesModal {
+    .form-check-input {
+        position: static;
+        margin: 0;
+    }
+    ul.types {
+        li {
+            background: rgb(246, 166, 35);
+            padding: 4px 6px;
+            font-size: 9pt;
+            color: white;
+            border-radius: 3px;
+            margin: 2px 3px;
+            cursor: pointer;
+        }
+        li.add {
+            width: 35px;
+            background: none;
+            border: 1px solid $gray-blue;
+            color: $gray-blue;
+            padding: 6px;
         }
     }
 }

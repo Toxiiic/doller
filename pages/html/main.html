@@ -15,21 +15,20 @@
             <div class="col-left col-sm-3">
                 <div class="panel-control">
                     <!-- TODO 这个应该封装成组件 -->
-                    <a class="book-cover" :style="'background:url(/pages/img/'+getByBookId('cover', input.bookId)+')'" data-toggle="modal" data-target="#booksModal"></a>
+                    <a class="book-cover" :style="'background:url(/pages/img/'+getByBookId('cover', currentBookId)+')'" data-toggle="modal" data-target="#booksModal"></a>
                     <div class="inline-block">
                         <h5>{{curBook.name}}</h5>
                         <div class="remainder din-bold">¥{{curBook.reminder}}</div>
                     </div>
                     <form class="form-add-record">
                         <h5>种类
-                            <span class="circle-btn fa fa-question"></span>
-                            <span class="circle-btn fa fa-plus"></span>
+                            <span class="circle-btn fa fa-question" data-original-title=""></span>
+                            <span class="circle-btn fa fa-plus" data-toggle="modal" data-target="#typesModal"></span>
                         </h5>
                         <ul class="ul-type">
                             <li class="bolder" v-for="type in types" :style="typeStyle(type.color, type.id)" @click="chooseType(type.id)">
-                                {{type.name}}</li>
-                            <!-- :class="{active: input.typeId==type.id}" -->
-                            <!--                        <li class="active">吃饭</li>-->
+                                {{type.name}}
+                            </li>
                         </ul>
                         <h5>金额
                             <span class="circle-btn fa fa-question"></span>
@@ -66,7 +65,7 @@
                                     <div class="remainder">¥{{dayRecord.remainder}}</div>
                                 </span>
                                 <ul class="day-detail inline-block">
-                                    <li v-for="detail in dayRecord.detailRecords" :style="'border-color:'+getByTypeId('color', detail.typeId)" data-toggle="tooltip" data-placement="bottom" :title="detail.remark">
+                                    <li v-for="detail in dayRecord.detailRecords" :style="'border-color:'+getByTypeId('color', detail.typeId)" data-toggle="tooltip" data-placement="bottom" key="detail.id" :data-original-title="detail.remark">
                                         <span class="amount" :style="'background:'+getByTypeId('color', detail.typeId)">¥
                                             <span class="din-bold">{{detail.amount}}</span>
                                         </span>
@@ -82,13 +81,13 @@
         </div>
 
         <!-- 切换账本 Modal -->
-        <div class="modal fade" id="booksModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
+        <div class="modal fade" id="booksModal">
+            <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">切换账本</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
+                        <h5 class="modal-title">切换账本</h5>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
                         </button>
                     </div>
                     <div class="modal-body">
@@ -100,6 +99,61 @@
             </div>
         </div>
 
+        <!-- 种类操作 Modal -->
+        <div class="modal fade" id="typesModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">种类修改</h5>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <ul class="types">
+                            <li class="inline-block text-center add fa fa-plus"
+                                @click="clearTypesInput()">
+                            </li><li v-for="type in types"
+                                class="inline-block"
+                                :style="'background:'+type.color"
+                                @click="fillTypesInput(type)">
+                                {{type.name}}
+                            </li>
+                        </ul>
+                        <form>
+                            <h5>种类名称
+                                <span class="circle-btn fa fa-question"></span>
+                            </h5>
+                            <input v-model="typesInput.name" type="text" class="form-control" placeholder="">
+                            <h5>种类颜色
+                                <span class="circle-btn fa fa-question"></span>
+                            </h5>
+                            <input v-model="typesInput.color" type="color" class="form-control" placeholder="">
+                            <h5>种类备注
+                                <span class="circle-btn fa fa-question"></span>
+                            </h5>
+                            <textarea v-model="typesInput.remark" class="form-control"></textarea>
+                            <div class="form-check">
+                                    
+                                    <h5>
+                                    是否收入
+                                    <span class="circle-btn fa fa-question"></span>
+                                    <input v-model="typesInput.isIn" type="checkbox" class="form-check-input">
+                                </h5>
+                            </div>
+                            <label class="form-check-label">
+                                
+                            </label>
+                        </form>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-primary"
+                                @click="submitTypeInput()" data-dismiss="modal">保存修改</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">取消</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </body>
 <script src="/pages/assets/jquery.min.js"></script>
