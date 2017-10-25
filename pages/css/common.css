@@ -110,7 +110,7 @@ form.form-add-record {
   form.form-add-record ul.ul-type li {
     width: 64px;
     height: 45px;
-    padding-top: 14px;
+    padding: 14px 3px 0;
     cursor: pointer;
     border-radius: 5px;
     border: 1px solid #D0011B;

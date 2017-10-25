@@ -6,7 +6,7 @@ const vm = new Vue({
         books: [],
         types: null,
         records: null,
-        currentBookId: null, //当前选择的bookId /* 这个book不可以直接修改，必须调用loadBook() */
+        currentBookId: null, //当前选择的bookId /* 这个book不可以直接修改，必须调用openBook() */
         input: {
             //bookId: null, 
             typeId: 1,
@@ -18,6 +18,11 @@ const vm = new Vue({
             color: null,
             remark: null,
             isIn: null,
+        },
+        bookInput: {
+            name: null,
+            remainder: null,
+            remark: null
         }
         //有些变化：1.year，month，day全部分开了；2.type和color都由type id获取
     },
@@ -30,14 +35,9 @@ const vm = new Vue({
         }).catch(function(error) {
             console.log(`${error}`);
         });
-        //books信息（当前用户的所有book）
-        axios.get('/api/books').then(function(response) {
-            vm.books = response.data;
-            //页面加载完成默认打开第一个book
-            vm.loadBook(vm.books[0].id);
-        }).catch(function(error) {
-            console.log(`${error}`);
-        });
+
+        vm.loadAllBooksAndOpen();
+        
     },
     updated: function() {
         //TODO 执行起来蛮冗余
@@ -54,7 +54,7 @@ const vm = new Vue({
             }
             axios.post(`/api/record/add/${this.currentBookId}`, this.input).then(function (result) {
                 if(result.data.result) {
-                    vm.clearInput();
+                    // vm.clearInput();
                     vm.reloadBook();
                 }
             }).catch(function (error) {
@@ -94,10 +94,39 @@ const vm = new Vue({
                 return obj.id == id;
             })[key];
         },
-        loadBook: function(bookId) {
+        /**
+         * 
+         */
+        loadAllBooksAndOpen: (bookId) => {
+            //books信息（当前用户的所有book）
+            axios.get('/api/books').then(function(response) {
+                vm.books = response.data;
+                //页面加载完成默认打开第一个book
+                if(bookId == null) {
+                    bookId = vm.books[0].id;
+                }
+                vm.openBook(bookId);
+            }).catch(function(error) {
+                console.log(`${error}`);
+            });
+        },
+        openBook: function(bookId) {
             //先把input里的bookId换掉
             vm.currentBookId = bookId;
             //请求这个book的信息
+            vm.loadTypes(bookId);
+            vm.loadRecords(bookId);
+
+            vm.fillBookInput();
+        },
+        reloadBook: () => {
+            vm.openBook(vm.currentBookId);
+        },
+        /**
+         * 
+         */
+        //TODO 应该让依赖（bookId）通过参数传入，还是应该直接使用data中的公共数据？
+        loadTypes: (bookId) => {
             //types信息（当前打开book的所有types）
             axios.get(`/api/types/${bookId}`).then(function(response) {
                 vm.types = response.data;
@@ -105,6 +134,8 @@ const vm = new Vue({
             }).catch(function(error) {
                 console.log(`${error}`);
             });
+        },
+        loadRecords: (bookId) => {
             //records信息（当前打开book的所有records）
             axios.get(`/api/records/${bookId}`).then(function(response) {
                 console.log(response.data);
@@ -114,10 +145,7 @@ const vm = new Vue({
                 console.log(`${error}`);
             });
         },
-        reloadBook: () => {
-            vm.loadBook(vm.currentBookId);
-        },
-        clearTypesInput: (vm) => {
+        clearTypesInput: () => {
             vm.fillTypesInput({
                 id: null,
                 name: null,
@@ -137,6 +165,22 @@ const vm = new Vue({
             axios.post(`/api/types/edit/${vm.currentBookId}`, vm.typesInput).then(function (result) {
                 if(result.data) {
                     vm.reloadBook();
+                }
+            }).catch(function (error) {
+                console.log(error);
+            });
+        },
+        fillBookInput: function() {
+            vm.bookInput = {
+                id: vm.curBook.id,
+                name :vm.curBook.name,
+                remainder: vm.curBook.remainder
+            }
+        },
+        submitBookInput: function() {
+            axios.post(`/api/books/edit`, vm.bookInput).then(function (result) {
+                if(result.data) {
+                    vm.loadAllBooksAndOpen();
                 }
             }).catch(function (error) {
                 console.log(error);

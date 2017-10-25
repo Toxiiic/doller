@@ -29,9 +29,9 @@ module.exports = {
             }
         });
 
-        //给对应的book的reminder增减
+        //给对应的book的remainder增减
         let flag = type[0].is_in ? 1 : -1;
-        book[0].reminder += flag * body.amount;
+        book[0].remainder += flag * body.amount;
 
         await book[0].save();
         
