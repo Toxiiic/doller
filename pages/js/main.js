@@ -54,7 +54,7 @@ const vm = new Vue({
             }
             axios.post(`/api/record/add/${this.currentBookId}`, this.input).then(function (result) {
                 if(result.data.result) {
-                    // vm.clearInput();
+                    vm.clearInput();
                     vm.reloadBook();
                 }
             }).catch(function (error) {
