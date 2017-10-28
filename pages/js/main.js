@@ -131,6 +131,8 @@ const vm = new Vue({
             axios.get(`/api/types/${bookId}`).then(function(response) {
                 vm.types = response.data;
                 vm.input.typeId = vm.types[0].id;
+                console.log(`成功加载type～！`);
+                console.log(vm.types);
             }).catch(function(error) {
                 console.log(`${error}`);
             });
@@ -138,9 +140,11 @@ const vm = new Vue({
         loadRecords: (bookId) => {
             //records信息（当前打开book的所有records）
             axios.get(`/api/records/${bookId}`).then(function(response) {
-                console.log(response.data);
                 //把一条条的数据转换成可以绑定的树形格式
                 vm.records = getGoodRecords(response.data);
+                console.log(`成功加载records～`);
+                console.log(vm.records);
+                
             }).catch(function(error) {
                 console.log(`${error}`);
             });
