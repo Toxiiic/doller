@@ -51,19 +51,5 @@ app.use(controller());
 //url以pages开头，则去找pages目录下的静态文件
 app.use(staticFiles('/pages/', __dirname + '/pages'));
 
-
-// const model = require('./model');
-
-// let User = model.user;
-
-// (async () => {
-//     var user = await User.create({
-//         name: '哦耶这是我的名字',
-//         pwd: '123456'
-//     });
-//     console.log(user);
-// })()
-
-
-app.listen(3000);
-console.log('在3000端口监听啦');
+app.listen(80);
+console.log('在80端口监听啦');
