@@ -18,18 +18,18 @@ app.use(bodyParser({
 
 
 app.keys = ['some secret hurr'];
-const CONFIG = {
+const sessionOptions = {
  key: 'koa:sess', /** (string) cookie key (default is koa:sess) */
  /** (number || 'session') maxAge in ms (default is 1 days) */
  /** 'session' will result in a cookie that expires when session/browser is closed */
  /** Warning: If a session cookie is stolen, this cookie will never expire */
- maxAge: 86400000 * 180,
+ maxAge: config.session.maxAge,
  overwrite: true, /** (boolean) can overwrite or not (default true) */
  httpOnly: true, /** (boolean) httpOnly or not (default true) */
  signed: true, /** (boolean) signed or not (default true) */
  rolling: false, /** (boolean) Force a session identifier cookie to be set on every response. The expiration is reset to the original maxAge, resetting the expiration countdown. default is false **/
 };
-app.use(session(CONFIG, app));
+app.use(session(sessionOptions, app));
 
 app.use(rest.restify());
 /** 中间件的注册顺序很重要！！*/
@@ -42,5 +42,5 @@ app.use(controller());
 //url以pages开头，则去找pages目录下的静态文件
 app.use(staticFiles('/pages/', __dirname + '/pages'));
 
-app.listen(80);
-console.log('在80端口监听啦');
+app.listen(config.app.port);
+console.log(`在 ${config.app.port} 端口监听啦`);

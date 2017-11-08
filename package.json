@@ -1,30 +1,37 @@
 {
-    "name": "doller",
-    "version": "1.0.0",
-    "description": "A web account book",
-    "main": "app.js",
-    "scripts": {
-        "start": "node app.js"
-    },
-    "keywords": [
-        "koa",
-        "async"
-    ],
-    "author": "Toxiic Tong",
-    "license": "Apache-2.0",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/toxiiic/doller.git"
-    },
-    "dependencies": {
-        "koa": "2.0.0",
-        "koa-bodyparser": "^3.2.0",
-        "koa-router": "^7.0.0",
-        "koa-session": "^5.5.0",
-        "koa-session2": "^2.2.5",
-        "mime": "^2.0.3",
-        "mysql": "^2.15.0",
-        "mz": "^2.7.0",
-        "sequelize": "^3.30.4"
-    }
+  "name": "doller",
+  "version": "1.0.0",
+  "description": "A web account book",
+  "main": "app.js",
+  "scripts": {
+    "dev": "",
+    "build": "",
+    "start": "cross-env NODE_ENV=production node app.js",
+    "build:dev": "",
+    "start:dev": "node app.js"
+  },
+  "keywords": [
+    "koa",
+    "async"
+  ],
+  "author": "Toxiic Tong",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/toxiiic/doller.git"
+  },
+  "dependencies": {
+    "koa": "2.0.0",
+    "koa-bodyparser": "^3.2.0",
+    "koa-router": "^7.0.0",
+    "koa-session": "^5.5.0",
+    "koa-session2": "^2.2.5",
+    "mime": "^2.0.3",
+    "mysql": "^2.15.0",
+    "mz": "^2.7.0",
+    "sequelize": "^3.30.4"
+  },
+  "devDependencies": {
+    "cross-env": "^5.1.1"
+  }
 }

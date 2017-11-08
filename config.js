@@ -1,20 +1,21 @@
 
-
-const defaultConfig = './config-default.js';
-// 可设定为绝对路径，如 /opt/product/config-override.js
+//开发环境配置
+const devConfig = './config-dev.js';
+//生产环境配置
+const prodConfig = './config-prod.js';
+//
 const overrideConfig = './config-override.js';
-const testConfig = './config-test.js';
 
 const fs = require('fs');
 
 var config = null;
 
-if (process.env.NODE_ENV === 'test') {
-    console.log(`Load ${testConfig}...`);
-    config = require(testConfig);
+if (process.env.NODE_ENV === 'production') {
+    console.log(`Load ${prodConfig}...`);
+    config = require(prodConfig);
 } else {
-    console.log(`Load ${defaultConfig}...`);
-    config = require(defaultConfig);
+    console.log(`Load ${devConfig}...`);
+    config = require(devConfig);
     try {
         //config-override.js的话，就会先使用它
         if (fs.statSync(overrideConfig).isFile()) {
