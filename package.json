@@ -4,7 +4,7 @@
   "description": "A web account book",
   "main": "app.js",
   "scripts": {
-    "dev": "",
+    "dev": "webpack-dev-server --open",
     "build": "",
     "start": "cross-env NODE_ENV=production node app.js",
     "build:dev": "",
